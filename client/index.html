@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./main.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+  <title>Frontend Mentor | Job Listings</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header"></div>
+  <div class="top-bar">
+    <div class="inner-top-bar">
+      <div id="active-filters">
+      </div>
+
+      <div class="right-section">
+        <form class="search-section" id="searches">
+          <input type="search" class="search" placeholder="search..." id="search" >
+          <button class="search-icon" type="submit"><img src="./images/Search.png"></button>
+        </form>
+        <button class="clear" id="clear" type="button" onclick="clearActiveFilters()">Clear</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="main" class="all-listings">
+
+  </div>
+
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+<script src="./main.js"></script>
+
+</html>
