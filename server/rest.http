@@ -1,0 +1,35 @@
+GET http://127.0.0.1:5000/jobs
+
+###
+GET http://127.0.0.1:5000/jobs/1
+
+###
+POST http://127.0.0.1:5000/jobs
+Content-Type: application/json
+
+{
+    "company": "New Company",
+    "logo": "./images/photosnap.svg",
+    "new": true,
+    "featured": true,
+    "position": "Midlevel Frontend Developer",
+    "role": "Frontend",
+    "level": "Midlevel",
+    "postedAt": "2d ago",
+    "contract": "Full Time",
+    "location": "USA Only",
+    "languages": ["HTML", "CSS", "Javascript"],
+    "tools": ["PHP"]
+}
+
+###
+PATCH http://127.0.0.1:5000/jobs/11
+Content-Type: application/json
+
+{
+    "company": "Copuss",
+    "location": "Germany"
+}
+
+###
+DELETE http://127.0.0.1:5000/jobs/11
