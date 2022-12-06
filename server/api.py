@@ -1,14 +1,28 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify, make_response
+from werkzeug.utils import secure_filename
 import json
+import os
+
+UPLOAD_FOLDER = '../client/images'
+ALLOWED_EXTENSIONS = {'svg', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 with open('../client/data.json') as f:
     data = json.load(f)
 
 @app.route("/jobs")
 def get_jobs():
-    return data
+    return _corsify_actual_response(jsonify(data))
 
 @app.route("/jobs/<id>")
 def get_job_by_id(id):
@@ -21,11 +35,18 @@ def get_job_by_id(id):
 def add_job():
     prev_id = data[-1]["id"]
     next_id = int(prev_id) + 1
-    json_data = request.get_json()
+    json_data = request.form
+    f = request.files['logo']
+    if f and allowed_file(f.filename):
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+
+    languages = json_data['languages'].split(',')
+    tools = json_data['tools'].split(',')
+ 
     new_data = {
         "id": next_id,
         "company": json_data["company"],
-        "logo": json_data["logo"],
+        "logo": f"{UPLOAD_FOLDER}/{f.filename}",
         "new": json_data["new"],
         "featured": json_data["featured"],
         "position": json_data["position"],
@@ -34,14 +55,13 @@ def add_job():
         "postedAt": json_data["postedAt"],
         "contract": json_data["contract"],
         "location": json_data["location"],
-        "languages": json_data["languages"],
-        "tools":json_data["tools"]
+        "languages": languages,
+        "tools": tools
     }
 
     data.append(new_data)
     with open('../client/data.json', "w") as f:
         json.dump(data, f, indent=4)
-
     return new_data, 201
 
 @app.route("/jobs/<id>", methods=["PATCH"])
@@ -70,3 +90,6 @@ def delete_job(id):
         json.dump(data, f, indent=4)
 
     return f"Data with id {index} was sucessfully deleted", 204
+
+if __name__ == '__main__':  
+    app.run(debug = True)  

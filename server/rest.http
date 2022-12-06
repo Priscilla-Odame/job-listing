@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "company": "New Company",
-    "logo": "./images/photosnap.svg",
+    "logo": "../../../Downloads/flat.png",
     "new": true,
     "featured": true,
     "position": "Midlevel Frontend Developer",
@@ -19,7 +19,7 @@ Content-Type: application/json
     "contract": "Full Time",
     "location": "USA Only",
     "languages": ["HTML", "CSS", "Javascript"],
-    "tools": ["PHP"]
+    "tools": ["Happen"]
 }
 
 ###
@@ -32,4 +32,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://127.0.0.1:5000/jobs/11
+DELETE http://127.0.0.1:5000/jobs/21
