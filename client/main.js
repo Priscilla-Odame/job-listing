@@ -5,7 +5,7 @@ let filterTexts = [];
 let searchResult = ''
 
 const fetchData = async () => {
-  var DataAPI = "./data.json";
+  var DataAPI = "./client/data.json";
   const _response = await fetch(DataAPI);
   const _responsedata = await _response.json();
   try {
