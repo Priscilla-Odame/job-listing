@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- displays site properly based on user's device -->
+
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+        <!-- <link rel="stylesheet" href="../static/main.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='./main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='./home.css') }}">
+        <!-- <link rel="stylesheet" href="../../client/main.css"> -->
+       
+
+        <title>Frontend Mentor | Job Listings</title>
+    </head>
+
+    <body>
+        <div id="main">
+            <form id="my-form" action="http://127.0.0.1:5000/jobs" method="post" enctype="multipart/form-data">
+                <h1>Add Job</h1>
+                <input type="text" placeholder="Enter company name..." name ="company" id="company">
+                <label for="logo">Select a file:</label>
+                <input type="file" name="logo" id="logo">
+                <label for="new">Is this new?</label>
+                <select id="new" name="new">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+                <label for="featured">Is this featured?</label>
+                <select id="featured" name="featured">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+                <input type="text" placeholder="Enter position..." name="position" id="position">
+                <input type="text" placeholder="Enter role..." name="role" id="role">
+                <input type="text" placeholder="Enter level..." name="level" id="level">
+                <input type="text" placeholder="Enter timeposted..." name="postedAt" id="time">
+                <input type="text" placeholder="Enter contract type..." name="contract" id="contract">
+                <input type="text" placeholder="Enter location..." name="location" id="location">
+                <input type="text" placeholder="Enter languages..." name="languages" id="languages">
+                <input type="text" placeholder="Enter tools..." name="tools" id="tools">
+                <button type="submit" id="submit" >Submit</button>
+            </form>
+        </div>
+
+    </body>
+    <!-- <script src="main.js"></script> -->
+
+</html>

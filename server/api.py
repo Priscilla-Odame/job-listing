@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, render_template
 from werkzeug.utils import secure_filename
 import json
 import os
@@ -8,6 +8,7 @@ ALLOWED_EXTENSIONS = {'svg', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 def _corsify_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
@@ -62,7 +63,7 @@ def add_job():
     data.append(new_data)
     with open('../client/data.json', "w") as f:
         json.dump(data, f, indent=4)
-    return new_data, 201
+    return "Job added",201
 
 @app.route("/jobs/<id>", methods=["PATCH"])
 def update_job(id):
